@@ -5,8 +5,7 @@
     xmlns:local="using:ProjectHOPE"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    mc:Ignorable="d" Loaded="Page_Loaded" Background="#FFBBBBBB">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,9 +29,9 @@
             </RelativePanel>
         </SplitView>
         
-        <StackPanel x:Name="HeaderPanel" Orientation="Horizontal">
-            <Border Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Grid.Row="0">
-                <ToggleButton Click="Button_Click" VerticalAlignment="Top" Foreground="{ThemeResource ApplicationForegroundThemeBrush}">
+        <StackPanel x:Name="HeaderPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" Height="48" Margin="0,0,0,0" VerticalAlignment="Top" Background="#FFBBBBBB">
+            <Border Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Grid.Row="0" Margin="0,0,0,6">
+                <ToggleButton Click="Button_Click" VerticalAlignment="Top" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" Height="42">
                     <ToggleButton.Content>
                         <FontIcon x:Name="Hamburger" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" Margin="0,10,0,0"/>
                     </ToggleButton.Content>
@@ -41,8 +40,9 @@
             <!-- Use AutomationProperties.AccessibilityView to let a screen reader know that the image is purely decorative.
                  (If the Image conveyed useful information we'd not use AccessibilityView, but instead provide a localized 
                  name for the Image to convey its purpose.) -->
-            <Image x:Name="WindowsLogo" Source="Assets/logo-humminbird.png" AutomationProperties.AccessibilityView="Raw" Stretch="None" />
-            <TextBlock x:Name="Header" Text="Humminbird Production and Operation Enviroment"  Margin="0,15,0,0" />
+            <Image x:Name="WindowsLogo" Source="/Assets/Square44x44Logo.targetsize-48.png" AutomationProperties.AccessibilityView="Raw" Stretch="None" Width="47.8" />
+            <TextBlock x:Name="Header" Text="Humminbird Production and Operation Enviroment"  Margin="0,15,0,0" FontFamily="Calibri" FontSize="20" />
+            <TextBlock x:Name="Status" Text=""  Margin="5,15,0,0" FontFamily="Calibri" FontSize="20" />
         </StackPanel>
     </Grid>
 </Page>

@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Loaded="Page_Loaded">
 
     <Grid>
         <RelativePanel Width="Auto" Height="Auto" Grid.Column="2" Grid.Row="2">
@@ -16,9 +16,9 @@
             <Border x:Name="Divider1" RelativePanel.AlignVerticalCenterWithPanel="True"/>
             <TextBlock x:Name="tblockUsername" TextWrapping="Wrap" Text="Username:" FontSize="18" RelativePanel.AlignBottomWith="Divider1"  RelativePanel.AlignRightWith="Divider" Margin="-55.5,-5,10,5" Foreground="Black" FontWeight="Bold"/>
             <TextBlock x:Name="tblockPassword" TextWrapping="Wrap" Text="Password:" FontSize="18" RelativePanel.AlignTopWith="Divider1"  RelativePanel.AlignRightWith="Divider" Margin="-25,5,10,0" Foreground="Black" FontWeight="Bold" />
-            <TextBox x:Name="tbUsername" Width="150" Height="24" RelativePanel.AlignBottomWith="Divider1" RelativePanel.AlignLeftWith="Divider" Margin="0,-5,0,5" Background="White"/>
+            <TextBox x:Name="tbUsername" Width="150" Height="24" RelativePanel.AlignBottomWith="Divider1" RelativePanel.AlignLeftWith="Divider" Margin="0,-5,0,5" Background="White" KeyUp="TbUsername_KeyUp"/>
             <TextBox x:Name="tbPassword" Width="150" Height="24" RelativePanel.AlignTopWith="Divider1" RelativePanel.AlignLeftWith="Divider" Margin="0,5,0,5"/>
-            <Button Content="Login" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="65" RelativePanel.Below="tbPassword" RelativePanel.AlignRightWith="tblockPassword" Margin="150,0,-150,0" Click="Button_Click"/>
+            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Height="32" VerticalAlignment="Top" Width="65" RelativePanel.Below="tbPassword" RelativePanel.AlignRightWith="tblockPassword" Margin="150,0,-150,0" Click="Button_Click"/>
 
         </RelativePanel>
     </Grid>

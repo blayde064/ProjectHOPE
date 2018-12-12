@@ -24,6 +24,8 @@ namespace ProjectHOPE
     public sealed partial class MainPage : Page
     {
         public static MainPage Current;
+        public User user { get; set; }
+        public Classes.Location location;
 
         public MainPage()
         {
@@ -32,9 +34,16 @@ namespace ProjectHOPE
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
             Current = this;
+            location = new Classes.Location();
+            StatusLabel.Text = location.ToString();
 
             // Caching your main page is good practice, this makes it snappy for the user to return to "home" of your app.
             this.NavigationCacheMode = NavigationCacheMode.Required;
+        }
+
+        internal static void setStatusLabel(string v)
+        {
+            Current.StatusLabel.Text = "Status: " + v;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -69,20 +78,19 @@ namespace ProjectHOPE
             
         }
 
-        //private void Temp1_PointerPressed(object sender, PointerRoutedEventArgs e)
-        //{
-        //    MainFrame.Navigate(typeof(Page2));
-        //}
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (MainFrame == null)
+                return;
 
-        //private void Temp2_PointerPressed(object sender, PointerRoutedEventArgs e)
-        //{
-        //    MainFrame.Navigate(typeof(Page3));
-        //}
-
-        //private void Temp_PointerPressed(object sender, PointerRoutedEventArgs e)
-        //{
-        //    MainFrame.Navigate(typeof(Page1));
-        //}
+            // Navigate back if possible, and if the event has not 
+            // already been handled .
+            if (MainFrame.CanGoBack && e.Handled == false)
+            {
+                e.Handled = true;
+                MainFrame.GoBack();
+            }
+        }
 
         private void Options_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -90,7 +98,7 @@ namespace ProjectHOPE
             string option = temp.Text;
             switch (option)
             {
-                case "Page 1":
+                case "Production":
                     MainFrame.Navigate(typeof(Page1));
                     break;
                 case "Page 2":

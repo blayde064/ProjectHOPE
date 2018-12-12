@@ -124,6 +124,12 @@ namespace ProjectHOPE
                 e.Handled = true;
                 rootFrame.GoBack();
             }
+
+            if (rootFrame.CanGoBack && e.Handled == false)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
         }
 
         /// <summary>
