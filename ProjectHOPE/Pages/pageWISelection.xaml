@@ -12,6 +12,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <RelativePanel Background="#FFBBBBBB">
+        <Border RelativePanel.AlignRightWith="" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWith=""/>
         <controls:DataGrid x:Name="dataGrid" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding}" HorizontalAlignment="Stretch" Margin="300,250,300,250" VerticalAlignment="Stretch" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" BorderThickness="2,2,2,2" BorderBrush="Black" DoubleTapped="DataGrid_DoubleTapped" Background="White" Foreground="Black" RowBackground="White" RowForeground="White" HorizontalGridLinesBrush="#CC000000" AlternatingRowBackground="#FFAEAEAE" AlternatingRowForeground="Black" SelectionMode="Single">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn 
@@ -32,6 +33,7 @@
                 FontSize="20" />
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <Button x:Name="btnOpen" RelativePanel.AlignTopWith="" RelativePanel.AlignRightWith="" Height="33" Width="80" RelativePanel.Below="" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Open" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="820,539,0,0"/>
+        <Button x:Name="btnOpen" RelativePanel.AlignTopWith="" RelativePanel.AlignRightWith="dataGrid" Width="80" RelativePanel.Below="" HorizontalAlignment="Center" VerticalAlignment="Stretch" Content="Open" RelativePanel.AlignLeftWith="dataGrid" RelativePanel.AlignHorizontalCenterWith="" RelativePanel.AlignVerticalCenterWith="dataGrid" Click="BtnOpen_Click"/>
+        <Button x:Name="btnEdit" RelativePanel.AlignTopWith="" RelativePanel.AlignRightWith="dataGrid" Width="80" RelativePanel.Below="" HorizontalAlignment="Center" VerticalAlignment="Stretch" Content="Edit" RelativePanel.AlignLeftWith="dataGrid" RelativePanel.AlignHorizontalCenterWith="" RelativePanel.AlignVerticalCenterWith="dataGrid" Click="BtnEdit_Click" Visibility="Visible"/>
     </RelativePanel>
 </Page>

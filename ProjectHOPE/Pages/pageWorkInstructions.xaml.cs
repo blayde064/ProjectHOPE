@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Data.Pdf;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -38,6 +39,7 @@ namespace ProjectHOPE.Pages
         private double totalX = 0;
         private double totalY = 0;
         private string asNumber;
+        uint pageNum = 0;
 
 
         public pageWorkInstructions()
@@ -64,7 +66,7 @@ namespace ProjectHOPE.Pages
                 }
                 conn.Close();
             }
-            uint pageNum = 0;
+             pageNum = 0;
             SqlConnection conn1 = new SqlConnection(csObjectHolder.csObjectHolder.ObjectHolderInstance().HOPEConnectionString);
             string work = "WorkStation" + rootPage.location.WorkStation;
             string query1 = "SELECT "+work+" FROM WorkInstructionDisplayTemplates WHERE Series = @name";
@@ -83,26 +85,20 @@ namespace ProjectHOPE.Pages
                 conn1.Close();
             }
 
-
-            //var picker = new FileOpenPicker();
-            //picker.FileTypeFilter.Add(".pdf");
-            //StorageFile file = await picker.PickSingleFileAsync();
-            //Debug.WriteLine(file.Path);
-            //File.SetAttributes(this.WI.Location, System.IO.FileAttributes.Normal);
-            //File.Copy(this.WI.Location, @"C:\Users\bdill\Documents");
             StorageFile file = await StorageFile.GetFileFromPathAsync(this.WI.Location);
             pdfDocument = await PdfDocument.LoadFromFileAsync(file);
-            using (PdfPage page = pdfDocument.GetPage(pageNum-1))
+            using (PdfPage page = pdfDocument.GetPage(pageNum - 1))
             {
                 var stream = new InMemoryRandomAccessStream();
                 await page.RenderToStreamAsync(stream);
                 BitmapImage src = new BitmapImage();
                 imPage.Source = src;
                 await src.SetSourceAsync(stream);
-            }
 
-            //ScrollView.Width = this.Width/2;
-            //ScrollView.Height = imPage.Height;
+            }
+            // Process.Start(this.WI.Location);
+
+
         }
 
         private void ImPage_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
@@ -125,14 +121,7 @@ namespace ProjectHOPE.Pages
 
         private void ScrollView_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
         {
-            //Debug.WriteLine(ScrollView.ZoomFactor);
-            //if (ScrollView.ZoomFactor < 1.1)
-            //{
-            //    this.Transform.TranslateX += totalX;
-            //    this.Transform.TranslateY += totalY;
-            //    totalY = 0;
-            //    totalX = 0;
-            //}
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -51,13 +52,21 @@ namespace ProjectHOPE.Pages
                 }
                 conn.Close();
             }
-
             dataGrid.ItemsSource = workInstructions;
+
+            btnOpen.Margin = new Thickness(dataGrid.ActualWidth - btnOpen.ActualWidth, dataGrid.ActualHeight + btnOpen.ActualHeight + 5, 0, 0);
+
+            if (MainPage.Current.user.Username == "admin")
+            {
+
+                btnEdit.Margin = new Thickness(dataGrid.ActualWidth - btnOpen.ActualWidth - 2*btnEdit.ActualWidth - 10, dataGrid.ActualHeight + btnEdit.ActualHeight + 5, 0, 0);
+            }
+            else btnEdit.Visibility = Visibility.Collapsed;
         }
 
         private void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(pageWorkInstructions), ((WorkInstruction) dataGrid.SelectedItem).AssemblyNumber) ;
+            if (dataGrid.SelectedIndex != -1) this.Frame.Navigate(typeof(pageWorkInstructions), ((WorkInstruction) dataGrid.SelectedItem).AssemblyNumber) ;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -75,6 +84,16 @@ namespace ProjectHOPE.Pages
                 // Remove the UI from the title bar if there are no pages in our in-app back stack
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
             }
+        }
+
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            if(dataGrid.SelectedIndex != -1) this.Frame.Navigate(typeof(pageWorkInstructions), ((WorkInstruction)dataGrid.SelectedItem).AssemblyNumber);
         }
     }
 }
